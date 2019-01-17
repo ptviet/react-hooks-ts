@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-import Demo from "./demo";
+import Login from "./Login";
+import Register from "./Register";
 
 class App extends Component {
   render() {
-    return <Demo />;
+    return (
+      <>
+        <Login />
+        <hr />
+        <Register />
+      </>
+    );
   }
 }
 

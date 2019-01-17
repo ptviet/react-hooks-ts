@@ -54,7 +54,7 @@ const NetworkStatus = () => {
       <p>
         You are: <strong>{status ? "online" : "offline"}</strong>
       </p>
-      <p>Geolocation: {JSON.stringify(location)}</p>
+      <p>Geolocation: {JSON.stringify(location, null, 2)}</p>
     </div>
   );
 };
