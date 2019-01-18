@@ -1,13 +1,10 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import FetchAPI from "./FetchAPI";
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <h3>Hello</h3>
-      </>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <FetchAPI />
+  </div>
+);
 
 export default App;
