@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from "react";
-import FetchAPI from "./FetchAPI";
+import React from "react";
 
-const App = () => (
-  <div>
-    <FetchAPI />
-  </div>
-);
+const App = () => <div />;
 
 export default App;
