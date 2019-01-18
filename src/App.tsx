@@ -1,29 +1,24 @@
 import React, { useContext, useReducer } from "react";
-import { TodosContext, DispatchContext } from "./context";
+import { TodosContext, useGlobalState, DispatchContext } from "./context";
 import TodosReducer from "./reducer";
-// import { IState } from "./interface";
 import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
 
 const App = () => {
-  const initialState = useContext(TodosContext);
+  const initialState = useGlobalState();
   const [state, dispatch] = useReducer(TodosReducer, initialState);
 
   return (
     <DispatchContext.Provider value={dispatch}>
       <TodosContext.Provider value={state}>
-        <TodoList />
+        <div className="container mx-auto max-w-md text-center font-mono">
+          <h1 className="font-bold">Todos</h1>
+          <TodoForm />
+          <TodoList />
+        </div>
       </TodosContext.Provider>
     </DispatchContext.Provider>
   );
 };
-
-// export const useDispatch = () => {
-//   return useContext(DispatchContext);
-// };
-
-// export const useGlobalState = <K extends keyof IState>(property: K) => {
-//   const state = useContext(TodosContext);
-//   return state[property]; // only one depth selector for comparison
-// };
 
 export default App;

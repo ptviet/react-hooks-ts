@@ -12,6 +12,28 @@ const TodosReducer = (state: IState, action: IAction) => {
         ...state,
         todos: toggled
       };
+    case "ADD_TODO":
+      const added = [action.payload, ...state.todos];
+      return {
+        ...state,
+        todos: added
+      };
+    case "EDIT_TODO":
+      const edited = state.todos.map(todo =>
+        todo.id === action.payload.id ? (todo = action.payload) : todo
+      );
+      return {
+        ...state,
+        todos: edited
+      };
+    case "DELETE_TODO":
+      const filtered = state.todos.filter(
+        todo => todo.id !== action.payload.id
+      );
+      return {
+        ...state,
+        todos: filtered
+      };
     default:
       return state;
   }

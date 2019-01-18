@@ -1,23 +1,7 @@
-import React from "react";
+import React, { useContext, useReducer } from "react";
 import { ITodo, IAction } from "./interface";
 
-const todos: ITodo[] = [
-  {
-    id: 1,
-    text: "Eat breakfast",
-    complete: false
-  },
-  {
-    id: 2,
-    text: "Do laundry",
-    complete: false
-  },
-  {
-    id: 3,
-    text: "Finish project",
-    complete: true
-  }
-];
+const todos: ITodo[] = [];
 
 const TodosContext = React.createContext({
   todos
@@ -26,5 +10,18 @@ const TodosContext = React.createContext({
 const DispatchContext = React.createContext((() => 0) as React.Dispatch<
   IAction
 >);
+
+export const useDispatch = () => {
+  return useContext(DispatchContext);
+};
+
+export const useGlobalState = () => {
+  return useContext(TodosContext);
+};
+
+// export const useGlobalState = <K extends keyof IState>(property: K) => {
+//   const state = useContext(TodosContext);
+//   return state[property]; // only one depth selector for comparison
+// };
 
 export { TodosContext, DispatchContext };

@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { TodosContext, DispatchContext } from "../context";
+import React from "react";
+import { useDispatch, useGlobalState } from "../context";
 
 const TodoList = () => {
-  const { todos } = useContext(TodosContext);
-  const dispatch = useContext(DispatchContext);
+  const { todos } = useGlobalState();
+  const dispatch = useDispatch();
 
   return (
-    <div className="container mx-auto max-w-md text-center font-mono">
-      <h1 className="font-bold">Todos</h1>
+    <>
       <ul className="list-reset text-grey-darkest p-0">
         {todos.map(todo => (
           <li
@@ -24,11 +23,16 @@ const TodoList = () => {
               {todo.text}
             </span>
             <button className="mr-2">✏️</button>
-            <button className="mr-1">❌</button>
+            <button
+              className="mr-1"
+              onClick={() => dispatch({ type: "DELETE_TODO", payload: todo })}
+            >
+              ❌
+            </button>
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 
