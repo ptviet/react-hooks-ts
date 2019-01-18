@@ -22,7 +22,14 @@ const TodoList = () => {
             >
               {todo.text}
             </span>
-            <button className="mr-2">✏️</button>
+            <button
+              className="mr-2"
+              onClick={() =>
+                dispatch({ type: "SET_CURRENT_TODO", payload: todo })
+              }
+            >
+              ✏️
+            </button>
             <button
               className="mr-1"
               onClick={() => dispatch({ type: "DELETE_TODO", payload: todo })}

@@ -6,6 +6,7 @@ export interface ITodo {
 
 export interface IState {
   todos: ITodo[];
+  currentTodo: ITodo;
 }
 
 export interface IAction {

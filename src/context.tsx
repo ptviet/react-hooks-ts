@@ -1,10 +1,12 @@
 import React, { useContext, useReducer } from "react";
-import { ITodo, IAction } from "./interface";
+import { ITodo, IAction, IState } from "./interface";
 
 const todos: ITodo[] = [];
+const currentTodo: any = {};
 
 const TodosContext = React.createContext({
-  todos
+  todos,
+  currentTodo
 });
 
 const DispatchContext = React.createContext((() => 0) as React.Dispatch<
@@ -16,7 +18,7 @@ export const useDispatch = () => {
 };
 
 export const useGlobalState = () => {
-  return useContext(TodosContext);
+  return useContext(TodosContext) as IState;
 };
 
 // export const useGlobalState = <K extends keyof IState>(property: K) => {
