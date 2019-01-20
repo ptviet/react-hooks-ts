@@ -4,16 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-// export const UserContext = React.createContext(null as any);
-// const username = "PTV";
-
-ReactDOM.render(
-  // <UserContext.Provider value={username}>
-  //   <App />
-  // </UserContext.Provider>,
-  <App />,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 
 if (module.hot) {
   module.hot.accept();

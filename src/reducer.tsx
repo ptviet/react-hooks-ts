@@ -2,6 +2,11 @@ import { IState, IAction } from "./interface";
 
 const TodosReducer = (state: IState, action: IAction) => {
   switch (action.type) {
+    case "GET_TODOS":
+      return {
+        ...state,
+        todos: action.payload
+      };
     case "TOGGLE_TODO":
       const toggled = state.todos.map(todo =>
         todo.id === action.payload.id
