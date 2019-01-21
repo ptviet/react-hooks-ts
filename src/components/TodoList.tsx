@@ -1,9 +1,26 @@
 import React from "react";
+import Axios from "axios";
 import { useDispatch, useGlobalState } from "../context";
+import { ITodo } from "../interface";
+import { API } from "../config";
 
 const TodoList = () => {
   const { todos } = useGlobalState();
   const dispatch = useDispatch();
+
+  const onDelete = async (todo: ITodo) => {
+    await Axios.delete(`${API}/${todo.id}`);
+    dispatch({ type: "DELETE_TODO", payload: todo });
+  };
+
+  const onToggle = async (todo: ITodo) => {
+    const res = await Axios.patch(`${API}/${todo.id}`, {
+      complete: !todo.complete
+    });
+    if (res.data) {
+      dispatch({ type: "TOGGLE_TODO", payload: res.data });
+    }
+  };
 
   return (
     <>
@@ -11,9 +28,7 @@ const TodoList = () => {
         {todos.map(todo => (
           <li
             key={todo.id}
-            onDoubleClick={() =>
-              dispatch({ type: "TOGGLE_TODO", payload: todo })
-            }
+            onDoubleClick={() => onToggle(todo)}
             className="flex items-center bg-teal-light border-black border-dashed border-2 my-2 py-4"
           >
             <span
@@ -30,10 +45,7 @@ const TodoList = () => {
             >
               ✏️
             </button>
-            <button
-              className="mr-1"
-              onClick={() => dispatch({ type: "DELETE_TODO", payload: todo })}
-            >
+            <button className="mr-1" onClick={() => onDelete(todo)}>
               ❌
             </button>
           </li>

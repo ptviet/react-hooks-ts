@@ -9,9 +9,7 @@ const TodosReducer = (state: IState, action: IAction) => {
       };
     case "TOGGLE_TODO":
       const toggled = state.todos.map(todo =>
-        todo.id === action.payload.id
-          ? { ...action.payload, complete: !action.payload.complete }
-          : todo
+        todo.id === action.payload.id ? action.payload : todo
       );
       return {
         ...state,
@@ -29,7 +27,7 @@ const TodosReducer = (state: IState, action: IAction) => {
         todos: added
       };
     case "EDIT_TODO":
-      const editedTodo = { ...state.currentTodo, text: action.payload };
+      const editedTodo = { ...action.payload };
       const editedTodoIndex = state.todos.findIndex(
         todo => todo.id === editedTodo.id
       );
